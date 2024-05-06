@@ -93,6 +93,8 @@ class TrackList(object):
             if row["ReferenceType"] not in {3, 8}:
                 raise RuntimeError("ReferenceType {0} not implemented.".format(row["ReferenceType"]))
 
+            if row["ReferenceIndex"] >= len(syns.rows):
+                continue
             r_data = syns.rows[row["ReferenceIndex"]]["ReferenceItems"]
             a, b = struct.unpack(">HH", r_data)
 
